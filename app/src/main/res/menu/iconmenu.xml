@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menumap"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="Map">
+
+    </item>
+
+    <item
+        android:id="@+id/edit_sosnos"
+        android:icon="@drawable/ic_baseline_local_phone_24"
+        android:title="Phone number list">
+
+    </item>
+    <item
+        android:id="@+id/form"
+        android:icon="@drawable/ic_baseline_assignment_ind_24"
+        android:title="View Medical Form">
+
+    </item>
+    <item
+        android:id="@+id/formedit"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Edit Medical Form">
+
+    </item>
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_exit"
+        android:title="Logout">
+
+    </item>
+
+
+</menu>
