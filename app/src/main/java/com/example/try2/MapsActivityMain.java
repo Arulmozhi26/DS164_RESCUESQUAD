@@ -35,6 +35,10 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -104,6 +108,16 @@ public class MapsActivityMain extends AppCompatActivity implements OnMapReadyCal
         geofenceHelper = new GeofenceHelper(this);
         geofenceHelper2 = new GeofenceHelper(this);
 
+        //textView1=findViewById(R.id.name001);
+        //textView2=findViewById(R.id.email001);
+
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        if(signInAccount != null) {
+            //textView1.setText(signInAccount.getDisplayName());
+            //textView2.setText(signInAccount.getEmail());
+            //id = signInAccount.getId();
+        }
 
         setSupportActionBar(toolbar);
         toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
@@ -125,12 +139,13 @@ public class MapsActivityMain extends AppCompatActivity implements OnMapReadyCal
                                     drawerLayout.closeDrawer(GravityCompat.START);
                                     break;
                     case R.id.formedit:startActivity(new Intent(MapsActivityMain.this,FormEditActivity.class));
-                                    drawerLayout.closeDrawer(GravityCompat.START);
-                                    break;
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
                     case R.id.logout:startActivity(new Intent(MapsActivityMain.this,LogoutActivity.class));
-                                    drawerLayout.closeDrawer(GravityCompat.START);
-                                    break;
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
                 }
+
                 return true;
             }
         });
