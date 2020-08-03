@@ -7,6 +7,7 @@ public class Member {
     String Latlong;
     String url ;
     String time_stamp;
+    String Track;
 
     public Member() {
     }
@@ -50,4 +51,5 @@ public class Member {
     public void setTime_stamp(String time_stamp) {
         this.time_stamp = time_stamp;
     }
+
 }

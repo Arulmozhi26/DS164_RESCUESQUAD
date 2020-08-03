@@ -46,14 +46,14 @@ public class AdminActivity extends AppCompatActivity {
         Button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(AdminActivity.this,SignupActivity.class));
             }
         });
 
         Button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(AdminActivity.this,Track.class));
             }
         });
 

@@ -16,7 +16,7 @@ public class DatabaseHelper02 extends SQLiteOpenHelper {
     private static final String COL2 = "TITLE";
     private static final String COL3 = "DESCR";
     private static final String COL4 = "LATLNG";
-
+    private static final String COL5 = "TRACK";
 
     public DatabaseHelper02(Context context) {
         super(context, TABLE_NAME, null, 1);
@@ -35,12 +35,13 @@ public class DatabaseHelper02 extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String item1,String item2,String item3) {
+    public boolean addData(String item1,String item2,String item3,String item4) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, item1);
         contentValues.put(COL3,item2);
         contentValues.put(COL4,item3);
+        contentValues.put(COL5,item4);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         Log.d(TAG, "addData: Adding " + item1 +" to " + TABLE_NAME);
@@ -62,12 +63,7 @@ public class DatabaseHelper02 extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         return data;
     }
-    public Cursor getpData(int id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " +COL1 +"= '" + id + "'";
-        Cursor data =db.rawQuery(query,null);
-        return data;
-    }
+
 
     public Cursor getItemID(String name){
         SQLiteDatabase db = this.getWritableDatabase();

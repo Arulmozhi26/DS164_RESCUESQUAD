@@ -17,9 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EnterDataActivity2 extends AppCompatActivity {
 
@@ -31,7 +37,10 @@ public class EnterDataActivity2 extends AppCompatActivity {
     private EditText editText1,editText2;
     private TextView textView1;
     String MyLatitude,MyLongitude;
-    FusedLocationProviderClient mfusedLocationProviderClient2;
+    String latlongupdate,store;
+    List<String> storelatlng =new ArrayList<>();
+    FusedLocationProviderClient mfusedLocationProviderClient2, mLocationProviderClient;
+    LocationCallback  mLocationCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,9 @@ public class EnterDataActivity2 extends AppCompatActivity {
         textView1=(TextView) findViewById(R.id.latlng);
         mDatabaseHelper02 = new DatabaseHelper02(this);
         mfusedLocationProviderClient2= LocationServices.getFusedLocationProviderClient(EnterDataActivity2.this);
+        mLocationProviderClient= LocationServices.getFusedLocationProviderClient(EnterDataActivity2.this);
+
+
 
         if(ActivityCompat.checkSelfPermission(EnterDataActivity2.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
             return;
@@ -66,9 +78,10 @@ public class EnterDataActivity2 extends AppCompatActivity {
                                 String newEntry1 = editText1.getText().toString();
                                 String newEntry2 = editText2.getText().toString();
                                 String newEntry3 =MyLatitude+","+MyLongitude;
+                                String newEntry4=store;
 
                                 if (editText1!=null && editText2!=null) {
-                                    AddData(newEntry1,newEntry2,newEntry3);
+                                    AddData(newEntry1,newEntry2,newEntry3,newEntry4);
                                     editText1.setText("");
                                     editText2.setText("");
                                     Intent intent = new Intent(EnterDataActivity2.this, ListDataActivity2.class);
@@ -102,11 +115,23 @@ public class EnterDataActivity2 extends AppCompatActivity {
         });
 
 
-
+        mLocationProviderClient=LocationServices.getFusedLocationProviderClient(EnterDataActivity2.this);
+        mLocationCallback=new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if(locationResult==null){
+                    return;
+                }
+                Location location2=locationResult.getLastLocation();
+                latlongupdate=location2.getLatitude()+","+location2.getLongitude();
+                store=store+","+latlongupdate;
+            }
+        };
+        getLocationUpdates();
     }
 
-    public void AddData(String newEntry1,String newEntry2,String newEntry3) {
-        boolean insertData = mDatabaseHelper02.addData(newEntry1,newEntry2,newEntry3);
+    public void AddData(String newEntry1, String newEntry2, String newEntry3, String newEntry4) {
+        boolean insertData = mDatabaseHelper02.addData(newEntry1,newEntry2,newEntry3,newEntry4);
 
         if (insertData) {
             toastMessage("Data Successfully Inserted!");
@@ -118,5 +143,23 @@ public class EnterDataActivity2 extends AppCompatActivity {
 
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    }
+    private void getLocationUpdates() {
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(2000);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mLocationProviderClient.requestLocationUpdates(locationRequest, mLocationCallback,null );
+
     }
 }

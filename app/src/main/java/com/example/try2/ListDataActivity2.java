@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class ListDataActivity2 extends AppCompatActivity {
     private static final String TAG = "ListDataActivity";
 
     DatabaseHelper02 mDatabaseHelper02;
+    private LocationCallback  mLocationCallback;
+    private FusedLocationProviderClient mFusedLocationProviderClient, mLocationProviderClient;
 
     private ListView mListView;
     Button add;

@@ -132,6 +132,7 @@ public class PostActivity extends AppCompatActivity {
                                 member.setDesc(desc);
                                 member.setLatlong(latlong);
                                 member.setTime_stamp(time_stamp);
+
                                 databaseReference.child(ID).child(time_stamp).setValue(member);
                                 Toast.makeText(PostActivity.this,"data entered successfully",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(PostActivity.this, ListDataActivity2.class));

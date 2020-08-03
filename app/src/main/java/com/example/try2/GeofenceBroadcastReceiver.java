@@ -38,22 +38,21 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         }
 
 //        Location location = geofencingEvent.getTriggeringLocation();
-        Toast.makeText(context, "your id is " + gFenceId, Toast.LENGTH_SHORT).show();
 
                 int transitionType = geofencingEvent.getGeofenceTransition();
             Toast.makeText(context, "your id" + gFenceId, Toast.LENGTH_SHORT).show();
                 switch (transitionType) {
                     case Geofence.GEOFENCE_TRANSITION_ENTER:
-                        Toast.makeText(context, "You have entered sub geofence", Toast.LENGTH_SHORT).show();
-                        notificationHelper.sendHighPriorityNotification("You have entered sub geofence", "", MapsActivityMain.class);
+                        Toast.makeText(context, "You have entered  geofence", Toast.LENGTH_SHORT).show();
+                        notificationHelper.sendHighPriorityNotification("You have entered  geofence", "", MapsActivityMain.class);
                         break;
                     case Geofence.GEOFENCE_TRANSITION_DWELL:
-                        Toast.makeText(context, "you are patrolling in sub geo fence", Toast.LENGTH_SHORT).show();
-                        notificationHelper.sendHighPriorityNotification("you are patrolling in sub geo fence", "",MapsActivityMain.class);
+                        Toast.makeText(context, "you are patrolling in  geo fence", Toast.LENGTH_SHORT).show();
+                        notificationHelper.sendHighPriorityNotification("you are patrolling in  geo fence", "",MapsActivityMain.class);
                         break;
                     case Geofence.GEOFENCE_TRANSITION_EXIT:
-                        Toast.makeText(context, "You have exited sub geofence", Toast.LENGTH_SHORT).show();
-                        notificationHelper.sendHighPriorityNotification("You have exited sub geofence", "",MapsActivityMain.class);
+                        Toast.makeText(context, "You have exited geofence", Toast.LENGTH_SHORT).show();
+                        notificationHelper.sendHighPriorityNotification("You have exited  geofence", "",MapsActivityMain.class);
                         break;
                 }
 
