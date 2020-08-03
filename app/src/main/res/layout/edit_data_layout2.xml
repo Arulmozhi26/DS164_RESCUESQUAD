@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="30dp">
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:srcCompat="@drawable/abc_vector_test" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/input_outline"
+        android:inputType="text"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:id="@+id/editable_item1" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/input_outline"
+        android:padding="15dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:id="@+id/editable_item2" />
+    <TextView
+        android:id="@+id/txtv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:background="@drawable/input_outline"
+        android:padding="15dp"
+        android:drawableLeft="@drawable/ic_location"/>
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="DELETE"
+        android:textColor="#FFF"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:background="@color/colorPrimary"
+        android:text="UPDATE"
+        android:textColor="#FFF"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/sync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:background="@color/colorPrimary"
+        android:text="SYNC"
+        android:textColor="#FFF"
+        android:textStyle="bold"/>
+
+</RelativeLayout>
